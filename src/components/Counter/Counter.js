@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { incrementCounter, decrementCounter } from "../../redux/actions";
 import { Grid, Button, Card, CardContent } from "@mui/material";
 
 const Counter = ({ counter, increment, decrement }) => {
+
   return (
     <>
       <Grid
@@ -17,16 +18,18 @@ const Counter = ({ counter, increment, decrement }) => {
             <CardContent>
               <h2 style={{ textAlign: "center" }}>Counter: {counter}</h2>
               <Grid container spacing={2} justifyContent="center">
+                
                 <Grid item xs={6}>
                   <Button
                     fullWidth
                     variant="contained"
                     onClick={increment}
-                    style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
+                    style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", }}
                   >
                     Increment
                   </Button>
                 </Grid>
+                
                 <Grid item xs={6}>
                   <Button
                     fullWidth
@@ -49,6 +52,7 @@ const Counter = ({ counter, increment, decrement }) => {
 const mapStateToProps = (state) => ({
   counter: state.counter,
 });
+ 
 
 const mapDispatchToProps = {
   increment: incrementCounter,
