@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { incrementCounter, decrementCounter } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Increment, Decrement } from "../../redux/actions";
 import { Grid, Button, Card, CardContent } from "@mui/material";
 
-const Counter = ({ counter, increment, decrement }) => {
+const Counter = () => {
+          
+          const dispatch = useDispatch();              
+          const counterValue = useSelector((state) => state);
+
+          console.log(counterValue, 'redux data')
 
   return (
     <>
@@ -16,14 +21,14 @@ const Counter = ({ counter, increment, decrement }) => {
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <Card elevation={4} style={{ padding: 16 }}>
             <CardContent>
-              <h2 style={{ textAlign: "center" }}>Counter: {counter}</h2>
+              <h2 style={{ textAlign: "center" }}>Counter: {counterValue}</h2>
               <Grid container spacing={2} justifyContent="center">
                 
                 <Grid item xs={6}>
                   <Button
                     fullWidth
                     variant="contained"
-                    onClick={increment}
+                    onClick={() => dispatch(Increment())}
                     style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", }}
                   >
                     Increment
@@ -34,7 +39,7 @@ const Counter = ({ counter, increment, decrement }) => {
                   <Button
                     fullWidth
                     variant="contained"
-                    onClick={decrement}
+                    onClick={() => dispatch(Decrement())}
                     style={{ boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}
                   >
                     Decrement
@@ -49,14 +54,4 @@ const Counter = ({ counter, increment, decrement }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  counter: state.counter,
-});
- 
-
-const mapDispatchToProps = {
-  increment: incrementCounter,
-  decrement: decrementCounter,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;
