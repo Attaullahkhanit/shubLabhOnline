@@ -6,17 +6,25 @@ import Counter from "../../components/Counter/Counter";
 
 function Home() {
   const counter = useSelector((state) => state.counter);
-  const titleColor = counter !== undefined && counter % 2 === 0 ? "red" : "yellow";
+  console.log(counter, "counter value");
+
+  const titleColor = counter % 2 === 0 ? "red" : "yellow";
+
+  const secondTitleColor = titleColor == "red" ? "blue" : "pink";
+
+  const makeBold = secondTitleColor == "blue" ? "300" : "900";
 
   return (
     <>
       <Typography variant="h2" style={{ color: titleColor }}>
         Shubh Labh Online Task
       </Typography>
-      <Typography variant="h4">
+      <Typography variant="h4" style={{ color: secondTitleColor }}>
         Task: Counter Which have Increment and Decrement Button
       </Typography>
-      <Typography variant="h6">Used: Mui React, Redux</Typography>
+      <Typography variant="h6" style={{ fontWeight: makeBold }}>
+        Used: Mui React, Redux
+      </Typography>
       <Counter />
     </>
   );
